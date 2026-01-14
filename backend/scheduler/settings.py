@@ -81,9 +81,9 @@ WSGI_APPLICATION = 'scheduler.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'eventdetails',
-        'USER': 'root',
-        'PASSWORD': 'Siva@2004',
+        'NAME': 'syncfusion',
+        'USER': 'username',
+        'PASSWORD': 'password',
         'HOST': 'localhost',   # Or an IP Address that your DB is hosted on
         'PORT': '3306',
     }
