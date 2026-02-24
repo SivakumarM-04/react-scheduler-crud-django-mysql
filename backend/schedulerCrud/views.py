@@ -17,12 +17,12 @@ def UpdateData(request):
     if request.method == 'POST':
         data = JSONParser().parse(request)
         if 'added' in data and len(data['added']) > 0:
-            schedule_events_data = data['added'][0]  # Get the first event from the 'added' list
-            schedule_events_serializer = ScheduleEventsSerializer(data=schedule_events_data)
-            if schedule_events_serializer.is_valid():
-                schedule_events_serializer.save()
-            else:
-                return JsonResponse(schedule_events_serializer.errors, safe=False, status=400)
+            for item in data['added']:
+                schedule_events_serializer = ScheduleEventsSerializer(data=item)
+                if schedule_events_serializer.is_valid():
+                    schedule_events_serializer.save()
+                else:
+                    return JsonResponse(schedule_events_serializer.errors, safe=False, status=400)
 
         if 'changed' in data and len(data['changed']) > 0:
             for item in data['changed']:
