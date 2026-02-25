@@ -1,18 +1,14 @@
-from django.views.decorators.csrf import csrf_exempt
 from rest_framework.parsers import JSONParser
 from django.http.response import JsonResponse
 from schedulerCrud.serializers import ScheduleEventsSerializer
 from schedulerCrud.models import ScheduleEvents
 
-# views.py
-@csrf_exempt
 def GetData(request):
     
         schedule_events = ScheduleEvents.objects.all()
         schedule_events_serializer=ScheduleEventsSerializer(schedule_events,many=True)
         return JsonResponse(schedule_events_serializer.data,safe=False)
 
-@csrf_exempt
 def UpdateData(request):
     if request.method == 'POST':
         data = JSONParser().parse(request)
